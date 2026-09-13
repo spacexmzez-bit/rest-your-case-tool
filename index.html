@@ -39,6 +39,7 @@
   </script>
 </head>
 <body class="bg-brand-dark text-slate-200 min-h-screen antialiased flex flex-col justify-between overflow-x-hidden relative">
+
   <!-- ================= TOP HUD NAV ================= -->
   <header class="border-b border-brand-border bg-brand-surface/90 backdrop-blur sticky top-0 z-40 shrink-0">
     <div class="max-w-7xl mx-auto px-4 min-h-14 py-2 flex flex-wrap items-center justify-between gap-2">
@@ -52,6 +53,7 @@
           <span>⚡</span>
           <span>Parse State</span>
         </button>
+
         <button onclick="toggleNavDrawer()" class="px-2.5 py-1.5 rounded bg-brand-surface border border-brand-border text-brand-gold hover:text-white transition flex items-center gap-2 font-mono text-xs shadow-sm hover:border-brand-gold/50">
           <span class="text-base leading-none">☰</span>
           <span class="hidden sm:inline uppercase tracking-wider text-[11px] font-bold">Menu</span>
@@ -59,6 +61,7 @@
       </nav>
     </div>
   </header>
+
   <div class="bg-black border-b border-brand-border overflow-hidden whitespace-nowrap py-1 flex items-center shrink-0">
     <div class="inline-block animate-scrollMarquee text-[11px] text-brand-gold font-mono whitespace-nowrap">
       ⚖️ TIP: Click "Parse State" to sync the 3-line HUD or /log record into the board. &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; 
@@ -66,6 +69,7 @@
       ⚖️ WARNING: Match tier logging to your actual LLM window (Free: Turn 12 | Paid: Turn 35).
     </div>
   </div>
+
   <!-- ================= TAB 1: OVERVIEW ================= -->
   <main id="tab-dossier" class="max-w-5xl mx-auto px-4 py-8 space-y-12 flex-grow w-full">
     <section class="space-y-6 max-w-3xl">
@@ -86,6 +90,7 @@
       </div>
     </section>
   </main>
+
   <!-- ================= TAB 2: PROMPT SETUP ================= -->
   <main id="tab-setup" class="hidden max-w-4xl mx-auto px-4 py-8 flex-grow w-full space-y-6">
     <div class="border-b border-brand-border pb-4 flex justify-between items-end">
@@ -95,10 +100,12 @@
       </div>
       <button onclick="copyPrompt()" id="copy-prompt-btn" class="px-4 py-2 bg-brand-gold text-brand-dark font-mono font-bold text-xs rounded hover:bg-white transition">Copy Directive</button>
     </div>
+
     <div class="bg-[#0d0f12] border border-brand-border rounded p-4 relative">
-      <pre id="master-prompt-text" class="text-xs font-mono text-emerald-400 whitespace-pre-wrap overflow-y-auto max-h-[60vh] leading-relaxed select-all">Loading directive...</pre>
+      <pre id="master-prompt-text" class="text-xs font-mono text-emerald-400 whitespace-pre-wrap overflow-y-auto max-h-[60vh] leading-relaxed select-all">Loading SYSTEM_PROMPT.md...</pre>
     </div>
   </main>
+
   <!-- ================= TAB 3: TRIAL TRACKER ================= -->
   <main id="tab-tracker" class="hidden max-w-6xl mx-auto px-4 py-6 flex-grow w-full space-y-6">
     <div class="bg-brand-dark border border-brand-border rounded p-4 grid grid-cols-1 md:grid-cols-6 gap-3 items-center">
@@ -118,6 +125,7 @@
           <option>Phase 4: Verdict</option>
         </select>
       </div>
+
       <div class="md:col-span-3 flex gap-2 justify-around bg-brand-surface border border-brand-border rounded p-2 text-center items-center">
         <div>
           <span class="text-[9px] font-mono text-brand-muted uppercase block">Turn</span>
@@ -127,6 +135,7 @@
             <button onclick="adjStat('turn', 1)" class="w-5 h-5 rounded bg-brand-dark border border-brand-border text-xs">+</button>
           </div>
         </div>
+
         <div>
           <span class="text-[9px] font-mono text-brand-muted uppercase block">AP</span>
           <div class="flex items-center gap-1 mt-0.5">
@@ -135,6 +144,7 @@
             <button onclick="adjStat('ap', 1)" class="w-5 h-5 rounded bg-brand-dark border border-brand-border text-xs">+</button>
           </div>
         </div>
+
         <div>
           <span class="text-[9px] font-mono text-brand-muted uppercase block">Strikes</span>
           <div class="flex items-center gap-1 mt-0.5">
@@ -143,6 +153,7 @@
             <button onclick="adjStat('strikes', 1)" class="w-5 h-5 rounded bg-brand-dark border border-brand-border text-xs">+</button>
           </div>
         </div>
+
         <div>
           <span class="text-[9px] font-mono text-brand-muted uppercase block">Undos</span>
           <div class="flex items-center gap-1 mt-0.5">
@@ -151,11 +162,13 @@
             <button onclick="adjStat('undos', 1)" class="w-5 h-5 rounded bg-brand-dark border border-brand-border text-xs">+</button>
           </div>
         </div>
+
         <div class="border-l border-brand-border pl-2 flex items-center">
           <button onclick="openWipeModal()" class="text-[9px] text-rose-400 hover:text-white px-2 py-1 rounded border border-rose-900/50 hover:bg-rose-900/50 font-mono uppercase">Reset</button>
         </div>
       </div>
     </div>
+
     <!-- Active Personnel Metadata Pill -->
     <div id="roster-banner" class="hidden bg-brand-surface border border-brand-border px-3 py-1.5 rounded text-xs font-mono flex flex-wrap gap-4 text-brand-muted">
       <span>Judge: <strong id="roster-judge" class="text-slate-200">Unassigned</strong></span>
@@ -163,6 +176,7 @@
       <span>Lead Investigator: <strong class="text-brand-gold">Carlos Diaz</strong></span>
       <span>Client: <strong id="roster-client" class="text-slate-200">Pending</strong></span>
     </div>
+
     <!-- Workspace -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <!-- Evidence Docket -->
@@ -173,6 +187,7 @@
         </div>
         <div id="docket-list" class="space-y-3"></div>
       </section>
+
       <!-- Facts & Work Notes -->
       <section class="space-y-6">
         <div class="space-y-2">
@@ -183,6 +198,7 @@
           </div>
           <div id="fact-ledger" class="bg-brand-dark border border-brand-border rounded p-4 font-mono text-xs text-slate-200 space-y-2 min-h-[150px] max-h-[280px] overflow-y-auto"></div>
         </div>
+
         <div class="space-y-2">
           <h3 class="text-sm font-serif text-white uppercase tracking-wider">Work Notes</h3>
           <textarea id="attorney-notes" oninput="saveTrackerState()" placeholder="Draft cross theories, impeachment points, or suppression grounds here..." class="w-full h-36 bg-brand-surface border border-brand-border rounded p-3 text-xs text-slate-200 font-mono outline-none focus:border-brand-gold/50 resize-none"></textarea>
@@ -190,12 +206,14 @@
       </section>
     </div>
   </main>
+
   <!-- ================= TAB 4: HOW TO PLAY ================= -->
   <main id="tab-howtoplay" class="hidden max-w-5xl mx-auto px-4 py-8 space-y-10 flex-grow w-full">
     <div class="border-b border-brand-border pb-4">
       <h1 class="text-3xl font-serif text-white font-semibold">Field Operations Manual</h1>
       <p class="text-brand-muted text-sm mt-2">Procedural directives and resource expenditure rules.</p>
     </div>
+
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <section class="bg-brand-surface border border-brand-border rounded p-5 space-y-3">
         <h2 class="text-brand-gold font-mono text-sm uppercase tracking-wider border-b border-brand-border pb-2">Phase 2 AP Cost Ledger</h2>
@@ -206,6 +224,7 @@
           <li><strong class="text-white">Forensic Re-examination (3 AP):</strong> Independent ballistics, DNA panels, toxicology, or autopsy margin reviews.</li>
         </ul>
       </section>
+
       <section class="bg-brand-surface border border-brand-border rounded p-5 space-y-3">
         <h2 class="text-brand-gold font-mono text-sm uppercase tracking-wider border-b border-brand-border pb-2">Automated Synchronization</h2>
         <div class="text-sm text-slate-300 space-y-3 font-sans">
@@ -215,12 +234,14 @@
       </section>
     </div>
   </main>
+
   <!-- ================= TAB 5: LEGAL LIBRARY ================= -->
   <main id="tab-legal" class="hidden max-w-5xl mx-auto px-4 py-8 space-y-10 flex-grow w-full">
     <div class="border-b border-brand-border pb-4">
       <h1 class="text-3xl font-serif text-white font-semibold">Legal Library &amp; Objections</h1>
       <p class="text-brand-muted text-sm mt-2">Evidentiary grounds and Fourth Amendment suppression doctrine.</p>
     </div>
+
     <section class="space-y-4">
       <h2 class="text-xl font-serif text-white uppercase tracking-wider border-b border-brand-border pb-2">Trial Rules of Evidence</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -243,6 +264,7 @@
       </div>
     </section>
   </main>
+
   <!-- ================= PARSER MODAL ================= -->
   <div id="sync-modal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-brand-surface border border-brand-gold/60 rounded max-w-xl w-full p-6 space-y-4 shadow-2xl">
@@ -267,6 +289,7 @@
       </div>
     </div>
   </div>
+
   <!-- ================= EXHIBIT MODAL ================= -->
   <div id="exhibit-modal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-brand-surface border border-brand-border rounded max-w-md w-full p-5 space-y-4">
@@ -282,6 +305,7 @@
       </div>
     </div>
   </div>
+
   <!-- ================= RESET MODAL ================= -->
   <div id="wipe-modal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-sm z-50 flex items-center justify-center p-4">
     <div class="bg-brand-surface border border-rose-900/50 rounded max-w-md w-full p-6 space-y-4">
@@ -293,6 +317,7 @@
       </div>
     </div>
   </div>
+
   <!-- ================= NAVIGATION DRAWER ================= -->
   <div id="nav-drawer-backdrop" onclick="toggleNavDrawer()" class="hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-50 transition-opacity"></div>
   
@@ -317,76 +342,14 @@
       Tactical Legal Simulator &copy; 2026
     </div>
   </aside>
+
   <footer class="border-t border-brand-border py-2 px-4 text-[10px] font-mono text-brand-muted max-w-7xl mx-auto w-full shrink-0 flex justify-between">
     <span>Rest Your Case &copy; 2026.</span>
     <span>Local tactical sync engine active.</span>
   </footer>
-  <!-- ================= SCRIPTS & DIRECTIVE PAYLOAD ================= -->
+
+  <!-- ================= SCRIPTS & SYSTEM PROMPT FETCH ================= -->
   <script>
-    const MASTER_DIRECTIVE_STRING = `# SYSTEM DIRECTIVE: LEGAL DEFENSE SIMULATION ENGINE
-You are the game engine for an authentic, turn-based legal defense procedural simulation. The user plays the role of Lead Defense Counsel. You generate the mystery, referee procedural and evidentiary rules, track mechanical state and resources, and roleplay all secondary characters.
----
-### CORE LAWS OF OPERATION
-1. STRICT SINGLE-ACTOR RULE:
-   - Output dialogue or actions for EXACTLY ONE persona per turn.
-   - Never script back-and-forth dialogue between two NPCs.
-   - If an NPC speaks, objects, or rules, stop immediately and yield the turn to the player.
-   - Prepend every generation with the active speaker's title: \`**[Judge <Name>]**\`, \`**[Prosecutor <Name>]**\`, \`**[Client <Name>]**\`, \`**[Investigator Diaz]**\`, \`**[Senior Partner / Legal Consultant]**\`, or the specific \`**[Witness Name]**\`. (Render titles in Arabic when Arabic mode is active: \`**[القاضي <الاسم>]**\`, \`**[المدعي العام <الاسم>]**\`, \`**[المحقق دياز]**\`, etc.).
-2. THE KNOWLEDGE FIREWALL & FAIR-PLAY DEDUCTION:
-   - Global Ground Truth is completely isolated from character knowledge.
-   - Characters only know what their specific perspective, role, and physical presence realistically permit.
-   - Witnesses never spontaneously confess on the stand; under pressure, they become defensive, contradict themselves, or invoke the Fifth Amendment.
-   - Every mystery must adhere to fair-play deduction: all clues needed to dismantle the prosecution's case must be present in initial discovery, uncoverable via Pre-Trial AP, or exposed through witness contradictions.
-3. NPC DIVERSITY & ANTI-TROPE PROTOCOLS:
-   - District Roster Pool: You must exclusively draw the Bench and Prosecution from the locked municipal pool:
-     * The Bench: The Honorable Arthur Vance (Strict traditionalist), The Honorable Elena Morales (Evidentiary/constitutional technician), The Honorable Marcus Holloway (Pragmatic, impatient).
-     * The Prosecution: DA Albright (Charismatic orator), ADA Rebecca Miller (Relentless proceduralist), ADA Frank Rossi (Combative, aggressive).
-     * Defense Firm: Investigator Carlos Diaz (Permanent lead investigator).
-   - Dynamic Transient Pool (Clients, Victims, Witnesses): Generate diverse names reflecting realistic demographic, ethnic, and socioeconomic variation within a major metropolitan jurisdiction.
-   - Banned Name List: Never use standard procedural stock names for clients, victims, or witnesses (strictly ban: Julian, Evelyn, Thorne, Sterling, Vance [outside the judge], and Marcus [outside Judge Holloway]).
-   - Anti-Corporate Trope Mandate: Strictly avoid the default "co-worker killed over corporate embezzlement" plotline. Prioritize blue-collar, domestic, or municipal settings.
-   - Motive Matrix: Cases must align with non-corporate axes:
-     * Personal & Retaliatory: Vigilantism, unprosecuted prior harm, toxic inheritance, custody conflicts.
-     * Cover-Ups & Coercion: Silence over a fatal hit-and-run, medical malpractice, blackmail over non-financial secrets.
-   - Fictionalization Mandate: All names, dates, organizations, and locations must be strictly fictional.
-4. CULPABILITY & THE GUILT / LESSER-INCLUDED PROTOCOL:
-   Client guilt scales dynamically with Case Complexity in the sealed Ground Truth:
-   - Complexity 1–2 (0% Guilt): Client is factually innocent; the state's case is flawed or based on mistaken identity.
-   - Complexity 3 (15% Guilt / "Dirty Hands"): Client is factually innocent of the primary charge, but committed an unrelated illicit or embarrassing act.
-   - Complexity 4 (40% Guilt / Overcharged): Client committed the physical act, but the prosecution aggressively overcharged the statutory grade.
-   - Complexity 5 (65% Guilt / High Culpability): Client is directly culpable. The defense cannot reasonably win an outright acquittal; success requires breaking the client's lies during intake, exposing procedural errors to suppress evidence, and forcing a plea or jury verdict on a lesser-included offense.
-5. LANGUAGE & TERM-BINDING PROTOCOL:
-   - Native English (\`EN\`): Standard US trial terminology.
-   - Arabic with Term-Binding (\`AR\`): Fully rendered in legal Arabic with bracketed English terms on first use.
-6. PERSISTENT STATE HUD:
-   Append this compact 3-line block at the absolute bottom of EVERY GENERATION starting from Turn 2:
-   \`[STATE: Phase X | AP: X/X | Strikes: X/X | Undos: X/X | Engine: [Level] | Complexity: [Level] | Mode: [Mode]]\`
-   \`[ROSTER: Judge [Name] | Pros: [Name] | Inv: Diaz | Client: [Name]]\`
-   \`[DOCKET: Ex.1-Autopsy(Admitted) | Ex.2-Wrench(SUPPRESSED) | Ex.3-Photo(Marked)]\`
----
-### MECHANICAL LEDGERS & MATRICES
-#### STANDARDIZED ACTION POINT (AP) COSTS (PHASE 2)
-* Subpoena Records (1 AP): Cell tower pings, surveillance video, dispatch audio, medical logs, or banking records.
-* Strategic/Legal Action (1 AP): Consult Senior Partner; construct an alibi timeline matrix.
-* Field Investigation (2 AP): Canvass a physical crime scene, interview a new witness, or re-interrogate an existing witness.
-* Forensic Re-examination (3 AP): Independent ballistics, toxicology, DNA, digital drives, or autopsy margins.
-#### DYNAMIC AP & INITIAL EVIDENCE MATRIX
-
-| Case Complexity | Easy Engine | Normal Engine | Hard Engine | Initial Exhibits | Investigative Scope |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **Level 1: Very Easy** | 4 AP | 3 AP | 2 AP | **2 Exhibits** | Core basics only; 1 clear binary flaw. |
-| **Level 2: Moderate** | 5 AP | 4 AP | 3 AP | **3 Exhibits** | Standard forensics; 1 timeline flaw + alibi. |
-| **Level 3: Challenging** | 7 AP | 5 AP | 4 AP | **3–4 Exhibits** | Conflicting witness statements; "Dirty Hands" alibi. |
-| **Level 4: Severe** | 9 AP | 7 AP | 5 AP | **4–5 Exhibits** | Circumstantial trap; 40% guilt overcharge. |
-| **Level 5: Brutal** | 12 AP | 9 AP | 6 AP | **5–6 Exhibits** | Massive evidentiary dump; 65% guilt; mitigation. | <br> #### THE 4TH AMENDMENT SUPPRESSION MATRIX <br> Grant suppression ONLY if defense investigation proves: <br> 1. Warrant lacked probable cause or contained material misrepresentations (Franks violation). <br> 2. Warrant execution exceeded authorized scope. <br> 3. Plain view exception did not apply. <br> 4. Unbroken chain of custody was compromised, contaminated, or unaccounted for. <br> 5. Inculpatory statement was obtained via custodial interrogation without voluntary Miranda waiver or through coercion. <br> *Fruit of the Poisonous Tree:* Derivative evidence uncovered solely via a suppressed exhibit must also be suppressed. <br> #### JUDICIAL STRIKE TRIGGERS (PHASE 3) <br> A Judicial Strike is assessed ONLY on baseless moves: <br> * Hearsay: Objecting to an out-of-court statement introduced for non-hearsay purposes or direct sensory facts. <br> * Leading: Objecting to leading questions during cross-examination, or on direct examination for foundational matters. <br> * Speculation: Objecting to a witness testifying to direct sensory perception. <br> * Relevance: Objecting where the prosecution has already established a foundation. <br> * Mismatched Exhibit: Presenting an exhibit that factually fails to address the targeted direct testimony claim. <br> --- <br> ### COMMANDS & CONTEXT LOGGING <br> - \`/start\`: Restarts setup configuration. <br> - \`/undo\`: Reverts the last exchange and mechanical ledger. (Easy: Unlimited | Normal: 3 | Hard: 0). <br> - \`/consult [term/question]\`: Pauses scene for tactical co-counsel or legal terminology clarification. <br> - \`/inspect [Ex. #]\`: Outputs objective forensic data and chain of custody for an exhibit. <br> - \`/recap\`: Outputs 3-bullet status: DA theory, admissions established, active witness posture. <br> - \`/lean\`: Switches presentation permanently to Strict Tactical. <br> - \`/log\`: Generates the complete Master Trial Record inside a code fence. <br> CONTEXT HEALTH LOGGING: <br> Tracking turns automatically. At Turn 12 for Free and Turn 35 for Paid, trigger the mandatory Context Alert to prevent degradation. <br> --- <br> ### PHASE 0: SETUP CONFIGURATION & BRIEFING <br> #### STEP 1: INTAKE MENU (TURN 1) <br> On Turn 1, do NOT generate the case or Base64 code. Output exclusively this menu: <br> ⚖️ DEFENSE COUNSEL CONFIGURATION INTAKE ⚖️ <br> 1. LANGUAGE: [EN] English | [AR] العربية <br> 2. PRESENTATION MODE: [A] Immersive Narrative | [B] Strict Tactical <br> 3. ENGINE DIFFICULTY: [Easy] (High AP, 4 Strikes, Unlimited Undos) | [Normal] (Balanced AP, 3 Strikes, 3 Undos) | [Hard] (Low AP, 2 Strikes, 0 Undos) <br> 4. CASE COMPLEXITY: [1] Very Easy | [2] Moderate | [3] Challenging | [4] Severe | [5] Brutal <br> 5. CHARGE CATEGORY: [1] Violent | [2] White-Collar | [3] Narcotics | [4] Property/Cyber | [R] Random <br> 6. TIER LOGGING INTERVAL: [F] Free (12 Turns) | [P] Paid (35 Turns)
-
-#### STEP 2: CASE INITIALIZATION (TURN 2)
-1. Lock configuration parameters.
-2. Select 1 Judge, 1 Prosecutor, and Investigator Carlos Diaz.
-3. Determine Ground Truth and output Base64 Sealed Envelope.
-4. Deliver Initial Discovery Packet: Charging Sheet, DA Theory, initial exhibits marked Ex.X(Admitted), Witness Roster.
-5. Append 3-line persistent HUD.
-6. Yield turn to Lead Counsel facing Client in holding (Phase 1).`;
     let appState = {
       title: '',
       phase: 'Phase 1: Intake',
@@ -401,27 +364,44 @@ You are the game engine for an authentic, turn-based legal defense procedural si
       facts: [],
       docket: []
     };
-    function initApp() {
-      const promptContainer = document.getElementById('master-prompt-text');
-      if (promptContainer) {
-        promptContainer.innerText = MASTER_DIRECTIVE_STRING;
+
+    async function loadSystemPrompt() {
+      const container = document.getElementById('master-prompt-text');
+      try {
+        const response = await fetch('./SYSTEM_PROMPT.md');
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}`);
+        }
+        const markdown = await response.text();
+        container.innerText = markdown;
+      } catch (err) {
+        container.innerText = `Failed to load SYSTEM_PROMPT.md.\nEnsure the file exists in the repository root and is served via an HTTP server (e.g., GitHub Pages, Live Server).\n\nDetails: ${err.message}`;
+        container.classList.remove('text-emerald-400');
+        container.classList.add('text-rose-400');
       }
-      const saved = localStorage.getItem('ryc_single_state');
+    }
+
+    function initApp() {
+      loadSystemPrompt();
+      const saved = localStorage.getItem('ryc_unified_state');
       if (saved) {
         try { appState = { ...appState, ...JSON.parse(saved) }; } catch (e) {}
       }
       renderTracker();
     }
+
     function saveTrackerState() {
       appState.title = document.getElementById('track-title').value;
       appState.phase = document.getElementById('track-phase').value;
       appState.notes = document.getElementById('attorney-notes').value;
-      localStorage.setItem('ryc_single_state', JSON.stringify(appState));
+      localStorage.setItem('ryc_unified_state', JSON.stringify(appState));
     }
+
     function toggleNavDrawer() {
       document.getElementById('nav-drawer').classList.toggle('-translate-x-full');
       document.getElementById('nav-drawer-backdrop').classList.toggle('hidden');
     }
+
     function switchTab(tabId) {
       const tabs = ['dossier', 'setup', 'tracker', 'howtoplay', 'legal'];
       tabs.forEach(t => {
@@ -435,17 +415,21 @@ You are the game engine for an authentic, turn-based legal defense procedural si
         }
       });
     }
+
     function navToTab(tabId) {
       switchTab(tabId);
       toggleNavDrawer();
       if(tabId === 'tracker') renderTracker();
     }
+
     function startTracker() {
       switchTab('tracker');
       renderTracker();
     }
+
     function copyPrompt() {
-      navigator.clipboard.writeText(MASTER_DIRECTIVE_STRING).then(() => {
+      const container = document.getElementById('master-prompt-text');
+      navigator.clipboard.writeText(container.innerText).then(() => {
         const btn = document.getElementById('copy-prompt-btn');
         btn.innerText = "Copied!";
         btn.classList.add("bg-white");
@@ -455,12 +439,14 @@ You are the game engine for an authentic, turn-based legal defense procedural si
         }, 2000);
       });
     }
+
     function adjStat(stat, delta) {
       appState[stat] += delta;
       if (appState[stat] < 0) appState[stat] = 0;
       saveTrackerState();
       renderTracker();
     }
+
     function addFact(customText) {
       const input = document.getElementById('new-fact-input');
       const val = (customText || input.value).trim();
@@ -473,11 +459,13 @@ You are the game engine for an authentic, turn-based legal defense procedural si
         renderTracker();
       }
     }
+
     function deleteFact(id) {
       appState.facts = appState.facts.filter(f => f.id !== id);
       saveTrackerState();
       renderTracker();
     }
+
     function openAddExhibitModal() { document.getElementById('exhibit-modal').classList.remove('hidden'); }
     function closeAddExhibitModal() { 
       document.getElementById('exhibit-modal').classList.add('hidden'); 
@@ -509,6 +497,7 @@ You are the game engine for an authentic, turn-based legal defense procedural si
       saveTrackerState(); 
       renderTracker(); 
     }
+
     function openWipeModal() { document.getElementById('wipe-modal').classList.remove('hidden'); }
     function closeWipeModal() { document.getElementById('wipe-modal').classList.add('hidden'); }
     function executeWipe() {
@@ -520,44 +509,64 @@ You are the game engine for an authentic, turn-based legal defense procedural si
       closeWipeModal(); 
       renderTracker();
     }
+
     function openSyncModal() {
       document.getElementById('sync-status').innerText = '';
       document.getElementById('sync-modal').classList.remove('hidden');
     }
     function closeSyncModal() { document.getElementById('sync-modal').classList.add('hidden'); }
+
     function processEngineSync() {
       const raw = document.getElementById('sync-input').value;
       if (!raw.trim()) return;
+
       let detected = 0;
+
+      // 1. Parse /log turn & metrics
       const turnMatch = raw.match(/Turn:\s*(\d+)/i);
       if (turnMatch) { appState.turn = parseInt(turnMatch[1], 10); detected++; }
-      const phaseLogMatch = raw.match(/Current_Phase:\s*\[?(Phase [^\]\n]+)\]?/i);
-      if (phaseLogMatch) { normalizeAndSetPhase(phaseLogMatch[1]); detected++; }
+
       const apLogMatch = raw.match(/AP_Remaining:\s*\[?(\d+)\]?/i);
       if (apLogMatch) { appState.ap = parseInt(apLogMatch[1], 10); detected++; }
+
       const strikesLogMatch = raw.match(/Strikes_Current:\s*\[?(\d+)\]?/i);
       if (strikesLogMatch) { appState.strikes = parseInt(strikesLogMatch[1], 10); detected++; }
+      
       const undosLogMatch = raw.match(/Undos_Remaining:\s*\[?(\d+)\]?/i);
       if (undosLogMatch) { appState.undos = parseInt(undosLogMatch[1], 10); detected++; }
-      const chargeMatch = raw.match(/Charge:\s*([^\n]+)/i);
+
       const clientMatch = raw.match(/Client:\s*\[?([^\]\|\n]+)\]?/i);
       if (clientMatch) {
-        appState.client = clientMatch[1].trim();
-        appState.title = chargeMatch ? `State v. ${appState.client} (${chargeMatch[1].trim()})` : `State v. ${appState.client}`;
+        const chargeMatch = raw.match(/Charge:\s*([^\n]+)/i);
+        const clientName = clientMatch[1].trim();
+        appState.title = chargeMatch ? `State v. ${clientName} (${chargeMatch[1].trim()})` : `State v. ${clientName}`;
+        appState.client = clientName;
         detected++;
       }
+
       const judgeMatch = raw.match(/Judge\s+([A-Za-z]+)/i);
       if (judgeMatch) appState.judge = judgeMatch[1].trim();
+
       const prosMatch = raw.match(/Pros:\s*([A-Za-z]+)/i);
       if (prosMatch) appState.pros = prosMatch[1].trim();
+
+      // 2. Parse 3-Line HUD
       const hudStateMatch = raw.match(/\[STATE:\s*Phase\s*([0-9.]+)[^|]*\|\s*AP:\s*(\d+)(?:\/\d+)?\s*\|\s*Strikes:\s*(\d+)(?:\/\d+)?\s*\|\s*Undos:\s*(\d+|Unlimited)(?:\/\d+)?/i);
       if (hudStateMatch) {
-        normalizeAndSetPhase("Phase " + hudStateMatch[1].trim());
+        const p = hudStateMatch[1].trim();
+        if (p.includes('1')) appState.phase = 'Phase 1: Intake';
+        else if (p.includes('2.5')) appState.phase = 'Phase 2.5: Motions';
+        else if (p.includes('2')) appState.phase = 'Phase 2: Pre-Trial (Diaz)';
+        else if (p.includes('3.5')) appState.phase = 'Phase 3.5: Case-in-Chief';
+        else if (p.includes('3')) appState.phase = 'Phase 3: Trial';
+        else if (p.includes('4')) appState.phase = 'Phase 4: Verdict';
+
         appState.ap = parseInt(hudStateMatch[2], 10);
         appState.strikes = parseInt(hudStateMatch[3], 10);
         appState.undos = hudStateMatch[4].toLowerCase() === 'unlimited' ? 99 : parseInt(hudStateMatch[4], 10);
         detected++;
       }
+
       const hudRosterMatch = raw.match(/\[ROSTER:\s*Judge\s+([^|]+)\|\s*Pros:\s*([^|]+)\|\s*Inv:\s*[^|]+\|\s*Client:\s*([^\]]+)\]/i);
       if (hudRosterMatch) {
         appState.judge = hudRosterMatch[1].trim();
@@ -566,16 +575,17 @@ You are the game engine for an authentic, turn-based legal defense procedural si
         if (!appState.title) appState.title = `State v. ${appState.client}`;
         detected++;
       }
+
+      // 3. Parse Exhibits from HUD [DOCKET: ...]
       const docketMatch = raw.match(/\[DOCKET:\s*([^\]]+)\]/i);
       if (docketMatch) {
-        const items = docketMatch[1].split('|');
-        items.forEach(item => {
+        docketMatch[1].split('|').forEach(item => {
           const m = item.trim().match(/(Ex\.\d+)[-\s]*([^(]+)\((Admitted|Marked|Pending|SUPPRESSED)\)/i);
           if (m) {
             const tag = m[1].trim();
             const title = m[2].trim();
             const rawStatus = m[3].trim().toLowerCase();
-            const status = rawStatus === 'suppressed' ? 'Suppressed' : rawStatus === 'marked' || rawStatus === 'pending' ? 'Marked' : 'Admitted';
+            const status = rawStatus === 'suppressed' ? 'Suppressed' : (rawStatus === 'marked' || rawStatus === 'pending') ? 'Marked' : 'Admitted';
             
             const existing = appState.docket.find(e => e.tag.toLowerCase() === tag.toLowerCase());
             if (existing) {
@@ -588,6 +598,8 @@ You are the game engine for an authentic, turn-based legal defense procedural si
         });
         detected++;
       }
+
+      // 4. Parse Exhibits from /log
       const logExhibits = raw.matchAll(/-\s*Exhibit:\s*\[?(Ex\.\s*\d+)\]?\s*\|\s*Title:\s*\[?([^|\n]+)\]?\s*\|\s*Status:\s*\[?([^\]\n]+)\]?/gi);
       for (const m of logExhibits) {
         const tag = m[1].trim();
@@ -604,29 +616,25 @@ You are the game engine for an authentic, turn-based legal defense procedural si
         }
         detected++;
       }
+
+      // 5. Parse concessions into facts
       const concessions = raw.matchAll(/Cross_Concessions:\s*\n\s*-\s*([^\n]+)/gi);
       for (const c of concessions) {
         addFact(`Witness concession: ${c[1].trim()}`);
       }
+
       if (detected > 0) {
         saveTrackerState();
         renderTracker();
-        document.getElementById('sync-status').innerText = `Synced (${detected} elements loaded)`;
+        document.getElementById('sync-status').innerText = `Synced (${detected} items updated)`;
         setTimeout(closeSyncModal, 800);
       } else {
-        document.getElementById('sync-status').className = "text-xs font-mono text-rose-400";
-        document.getElementById('sync-status').innerText = "Parse failed: ensure valid HUD or /log block.";
+        const statusEl = document.getElementById('sync-status');
+        statusEl.className = "text-xs font-mono text-rose-400";
+        statusEl.innerText = "No readable HUD or /log data found.";
       }
     }
-    function normalizeAndSetPhase(phaseStr) {
-      const s = phaseStr.toLowerCase();
-      if (s.includes('1') || s.includes('intake')) appState.phase = 'Phase 1: Intake';
-      else if (s.includes('2.5') || s.includes('motion')) appState.phase = 'Phase 2.5: Motions';
-      else if (s.includes('2') || s.includes('discovery') || s.includes('pre-trial')) appState.phase = 'Phase 2: Pre-Trial (Diaz)';
-      else if (s.includes('3.5') || s.includes('case-in-chief')) appState.phase = 'Phase 3.5: Case-in-Chief';
-      else if (s.includes('3') || s.includes('trial')) appState.phase = 'Phase 3: Trial';
-      else if (s.includes('4') || s.includes('verdict') || s.includes('closing')) appState.phase = 'Phase 4: Verdict';
-    }
+
     function renderTracker() {
       document.getElementById('track-title').value = appState.title || '';
       document.getElementById('track-phase').value = appState.phase;
@@ -635,6 +643,7 @@ You are the game engine for an authentic, turn-based legal defense procedural si
       document.getElementById('track-strikes').innerText = appState.strikes;
       document.getElementById('track-undos').innerText = appState.undos === 99 ? '∞' : appState.undos;
       document.getElementById('attorney-notes').value = appState.notes || '';
+
       const banner = document.getElementById('roster-banner');
       if (appState.judge || appState.pros || appState.client) {
         banner.classList.remove('hidden');
@@ -642,6 +651,7 @@ You are the game engine for an authentic, turn-based legal defense procedural si
         if (appState.pros) document.getElementById('roster-pros').innerText = appState.pros;
         if (appState.client) document.getElementById('roster-client').innerText = appState.client;
       }
+
       const factContainer = document.getElementById('fact-ledger');
       factContainer.innerHTML = '';
       if (appState.facts.length === 0) {
@@ -655,6 +665,7 @@ You are the game engine for an authentic, turn-based legal defense procedural si
             </div>`;
         });
       }
+
       const docketContainer = document.getElementById('docket-list');
       docketContainer.innerHTML = '';
       if (appState.docket.length === 0) {
@@ -681,6 +692,7 @@ You are the game engine for an authentic, turn-based legal defense procedural si
         });
       }
     }
+
     window.onload = initApp;
   </script>
 </body>
