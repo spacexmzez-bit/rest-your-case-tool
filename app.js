@@ -394,33 +394,9 @@ function processEngineSync() {
     detected++;
   }
 
-  // Docket parsing from HUD
-  const docketMatch = raw.match(/\[(?:DOCKET|الأدلة):\s*([^\]]+)\]/i);
-  if (docketMatch) {
-    docketMatch[1].split('|').forEach((item) => {
-      const m = item.trim().match(/(Ex\.\s*\d+|دليل\s*\d+)[-\s]*([^(]+)\(([^)]+)\)/i);
-      if (m) {
-        const tag = m[1].trim();
-        const title = m[2].trim();
-        const rawStatus = m[3].trim().toLowerCase();
-        let status = 'Admitted';
-        if (rawStatus.includes('suppress') || rawStatus.includes('مستبعد')) status = 'Suppressed';
-        else if (rawStatus.includes('mark') || rawStatus.includes('pending') || rawStatus.includes('مؤشر')) status = 'Marked';
+    // Docket parsing from /log
+  const logExhibits = raw.matchAll(/(?:\s*[-*]\s*)?(?:Exhibit|الدليل):\s*\[?([^|\]\n]+)\]?\s*\|\s*(?:Title|العنوان):\s*\[?([^|\]\n]+)\]?\s*\|\s*(?:Status|الحالة):\s*\[?([^|\]\n]+)\]?/gi);
 
-        const existing = appState.docket.find((e) => e.tag.toLowerCase() === tag.toLowerCase());
-        if (existing) {
-          existing.title = title;
-          existing.status = status;
-        } else {
-          appState.docket.push({ id: Date.now() + Math.random(), tag, title, details: '', status });
-        }
-      }
-    });
-    detected++;
-  }
-
-  // Docket parsing from /log
-  const logExhibits = raw.matchAll(/-\s*(?:Exhibit|الدليل):\s*\[?([^|\]\n]+)\]?\s*\|\s*(?:Title|العنوان):\s*\[?([^|\]\n]+)\]?\s*\|\s*(?:Status|الحالة):\s*\[?([^\]\n]+)\]?/gi);
   for (const m of logExhibits) {
     const tag = m[1].trim();
     const title = m[2].trim();
@@ -440,11 +416,12 @@ function processEngineSync() {
   }
 
   // Cross Concessions to Facts
-  const concessions = raw.matchAll(/(?:Cross_Concessions|اعترافات_المناقشة):\s*\n\s*-\s*([^\n]+)/gi);
+  const concessions = raw.matchAll(/(?:Cross_Concessions|اعترافات_المناقشة):\s*\n(?:\s*[-*]\s*([^\n]+))+/gi);
   for (const c of concessions) {
     const factPrefix = currentLang === 'ar' ? 'إقرار الشاهد: ' : 'Witness concession: ';
     addFact(`${factPrefix}${c[1].trim()}`);
   }
+
 
   const statusEl = document.getElementById('sync-status');
   if (detected > 0) {
